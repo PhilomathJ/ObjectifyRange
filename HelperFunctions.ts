@@ -28,8 +28,11 @@ function log<T>(msg: T): void {
 	}
 }
 
-function transpose(a) {
-	// return a[0].map(function (_, c) { return a.map(function (r) { return r[c]; }); });
-	// or in more modern dialect
-	return a[0].map((_, c) => a.map((r) => r[c]));
+/**
+ * Swaps rows for columns in a 2-dimensional array
+ * @param	{any[][]}	arr	2-dimensional array to br transposed
+ * @returns	{any[][]}			Transposed array
+ */
+function transpose(arr: any[][]) {
+	return arr[0].map((_, c) => arr.map((r) => r[c]));
 }
