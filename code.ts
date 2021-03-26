@@ -1,13 +1,28 @@
-// Generic data type that covers all possible return types from the Range.getValues() function
-type cellData = number | boolean | Date | string;
 const DEBUG = true;
+
+const testRange = {
+	startRow: 1,
+	startCol: 1,
+	rows: 6,
+	cols: 6,
+};
 
 /**
  * ObjectifyColumns - Converts a Google Sheets Range 2-dimensional array
  * 	into an object with column headers as keys and rest of column array as values
  * @param	{}
  */
-function objectifyColumns() {
+function objectifyColumns({
+	startRow,
+	startCol,
+	rows,
+	cols,
+}: {
+	startRow: number;
+	startCol: number;
+	rows: number;
+	cols: number;
+}): void {
 	const ss = SpreadsheetApp.getActiveSpreadsheet();
 	const sheet = ss.getActiveSheet();
 
@@ -19,32 +34,13 @@ function objectifyColumns() {
 	ss.toast('Objectifying complete', 'Complete');
 }
 
-/**
- * Logs a message to the GCP console iff DEBUG is set to TRUE
- * Uses Typescript generics to allow for logging of any data type
- *
- *	@param	{T}	msg	The message to be logged is of type 'generic'
- * @returns {void}
- */
-function log<T>(msg: T): void {
-	if (DEBUG) {
-		switch (typeof msg) {
-			case 'string':
-				console.log(msg);
-			case 'object':
-				console.log(Object(msg));
-			case 'number':
-			case 'bigint':
-			case 'symbol':
-				console.log(String(msg));
-			case 'boolean':
-				console.log(new Boolean(msg));
-			default:
-				return;
-		}
-	}
+function onOpen(): void {
+	SpreadsheetApp.getUi()
+		.createMenu('Objectify')
+		.addItem('Objectify Column', 'callObjectifyColumns')
+		.addToUi();
 }
 
-function onOpen(): void {
-	SpreadsheetApp.getUi().createMenu('Objectify').addItem('Objectify Column', 'objectifyColumns').addToUi();
+function callObjectifyColumns() {
+	objectifyColumns(testRange);
 }
