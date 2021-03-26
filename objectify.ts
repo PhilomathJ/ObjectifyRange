@@ -1,3 +1,4 @@
+// Potential types of data from th worksheet
 type cellData = number | Date | string;
 
 /**
@@ -9,13 +10,14 @@ type cellData = number | Date | string;
 function objectifyColumns(values: cellData[][]): Object {
 	if (!(values.length > 0 && values[0].length > 0)) throw new Error('Argument is not a 2-dimensional array');
 
-	const headers: cellData[] = values.shift()!; // Remove the headers into their own array
+	const headers: cellData[] = values.shift()!; // Remove the headers into their own array - assert non-null
 	const colValues: cellData[][] = transpose(values); // Swap rows for columns
 
 	let obj: any = {};
 
 	headers.forEach((h, index) => {
-		obj[h.toString()] = colValues[index];
+		// Iterate through all headers
+		obj[h.toString()] = colValues[index]; // User header value as key and rest of column as value
 	});
 
 	return obj;
@@ -33,6 +35,7 @@ function objectifyRows(values: cellData[][]): Object {
 	let obj: any = {};
 
 	values.forEach((row) => {
+		// Iterate through all rows
 		obj[row.shift()!.toString()] = row; // 1st col is key, rest of row is value
 	});
 

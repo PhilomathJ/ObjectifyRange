@@ -1,6 +1,6 @@
 const DEBUG = true;
 
-// Worksheet test data in cells
+// Worksheet test data in cells A1:F6
 const testRangeCols = {
 	startRow: 1,
 	startCol: 1,
@@ -8,6 +8,7 @@ const testRangeCols = {
 	cols: 6,
 };
 
+// Worksheet test data in cells A10:F15
 const testRangeRows = {
 	startRow: 10,
 	startCol: 1,
