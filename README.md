@@ -13,11 +13,9 @@ objectifyColumns(arr);
 
 ## Parameters
 
-values
-: The 2-dimensional array to be converted to an object
-
-> The 2-dimensional array to be converted to an object
+`values`  
+The 2-dimensional array to be converted to an object
 
 ## Return Value
 
-An object containing all the values passed in with the first row as key
+An object containing all the values passed in with the first row/col as key and rest of row/col as an array as values
