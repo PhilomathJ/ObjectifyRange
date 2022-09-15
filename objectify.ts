@@ -1,11 +1,11 @@
-// Potential types of data from th worksheet
+// Potential types of data from the worksheet
 type cellData = number | Date | string;
 
 /**
  * ObjectifyColumns - Converts a Google Sheets Range 2-dimensional array
  * 	into an object with column headers as keys and rest of column array as values
  * @param	{any[][]}	values	Range from which to get values
- * @returns	{void}
+ * @returns	{object}
  */
 function objectifyColumns(values: cellData[][]): Object {
 	if (!(values.length > 0 && values[0].length > 0)) throw new Error('Argument is not a 2-dimensional array');
